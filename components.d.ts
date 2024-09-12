@@ -22,6 +22,7 @@ declare module 'vue' {
     IconSupport: typeof import('./src/components/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
     Logo: typeof import('./src/components/Login/Logo.vue')['default']
+    Menu: typeof import('./src/components/Menu/index.vue')['default']
     MsgLogin: typeof import('./src/components/Login/MsgLogin.vue')['default']
     QRCode: typeof import('./src/components/Login/QRCode.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
