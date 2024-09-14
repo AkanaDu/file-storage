@@ -2,7 +2,7 @@
  * @Author: KafkaDu banshee1115@163.com
  * @Date: 2024-09-14 14:45:07
  * @LastEditors: KafkaDu banshee1115@163.com
- * @LastEditTime: 2024-09-14 15:09:28
+ * @LastEditTime: 2024-09-14 16:07:51
  * @FilePath: \file-storage\src\views\FileView.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -25,6 +25,9 @@ export default defineComponent({
         name: 'march seven'
       }
     ]
+    const fn = (item: any) => {
+      console.log(`触发了${item?.name}`)
+    }
     return () => (
       <>
         <div>{props?.name}</div>
@@ -32,7 +35,16 @@ export default defineComponent({
           {flag.value ? (
             <div>
               {data.map((o) => {
-                return <div class={'text-red-500'}>{o.name}</div>
+                return (
+                  <div
+                    class={'text-red-500'}
+                    onClick={() => {
+                      fn(o)
+                    }}
+                  >
+                    {o.name}
+                  </div>
+                )
               })}
             </div>
           ) : (
