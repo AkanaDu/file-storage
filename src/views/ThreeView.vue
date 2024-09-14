@@ -31,12 +31,13 @@ onMounted(() => {
   const vertexShader = `
     varying vec2 vUv;
     varying float vWave;
-     varying float uTime;
+    varying float uTime;
     void main() {
       vUv = uv;
       vec3 pos = position;
       vWave = sin(uv.x * 10.0 + uTime) * cos(uv.y * 10.0 + uTime) * 0.5;
       pos.z += vWave;
+      pos.y += vWave;
       gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
     }
   `
@@ -70,7 +71,6 @@ onMounted(() => {
   })
   const plane = new THREE.Mesh(geometry, material)
   scene.add(plane)
-
   // Initialize OrbitControls
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true // an animation loop is required when either damping or auto-rotation are enabled
@@ -78,16 +78,18 @@ onMounted(() => {
   controls.enableZoom = true
 
   // Animation variables
-  let time = 0
-
+  // let time = 0
+  const clock = new THREE.Clock()
   // Animation loop
-  function animate(time) {
+  function animate() {
     requestAnimationFrame(animate)
 
     // Update wave geometry
-    time += 2
+    // time += 0.01
+    // console.log(time)
     // Update shader uniform
-    material.uniforms.uTime.value = time
+    material.uniforms.uTime.value = clock.getElapsedTime()
+    // console.log(material.uniforms)
 
     // Update controls
     controls.update()
@@ -96,7 +98,7 @@ onMounted(() => {
     renderer.render(scene, camera)
   }
 
-  animate(time)
+  animate()
 
   // Handle resizing
   window.addEventListener('resize', () => {
