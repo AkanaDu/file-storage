@@ -2,7 +2,7 @@
  * @Author: 杜康 banshee1115@163.com
  * @Date: 2023-08-16 14:09:34
  * @LastEditors: KafkaDu banshee1115@163.com
- * @LastEditTime: 2024-09-12 11:10:50
+ * @LastEditTime: 2024-10-09 16:28:27
  * @FilePath: /share-drawing-v2.0/src/views/login/components/MsgLogin.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -64,9 +64,9 @@
 // import QRCode from './QRCode.vue'
 import DialogAgreement from './DialogAgreement.vue'
 import { reactive, ref } from 'vue'
-// import { PhoneOutlined, LockOutlined } from '@ant-design/icons-vue'
+import { PhoneOutlined, LockOutlined } from '@ant-design/icons-vue'
 import type { Rule } from 'ant-design-vue/es/form'
-import { checkPhone, checkAgreement } from '@utils/rules'
+import { checkPhone, checkAgreement } from '@/utils/rules'
 // import { LoginIn, authCode } from '@/api/index'
 // import { setStorage } from '@/utils/storage'
 import { message } from 'ant-design-vue'
