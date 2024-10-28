@@ -2,7 +2,7 @@
  * @Author: 杜康 banshee1115@163.com
  * @Date: 2023-08-16 14:09:34
  * @LastEditors: KafkaDu banshee1115@163.com
- * @LastEditTime: 2024-10-09 16:28:27
+ * @LastEditTime: 2024-10-10 10:00:50
  * @FilePath: /share-drawing-v2.0/src/views/login/components/MsgLogin.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -10,50 +10,52 @@
   <div class="w-full h-full flex justify-center items-center">
     <!-- 登录框 -->
     <div class="login-box w-80 shadow-lg rounded-lg p-8 pb-4 bg-white relative">
-      <Logo class="mb-4" />
-      <SwitchType class="mb-8" />
-      <!-- 表单 -->
-      <a-form ref="formRef" :model="form" :rules="rules">
-        <a-form-item name="phone">
-          <a-input v-model:value="form.phone" placeholder="请输入手机号">
-            <template #prefix>
-              <PhoneOutlined class="text-gray-400" />
-            </template>
-          </a-input>
-        </a-form-item>
-        <a-form-item name="code">
-          <div class="w-full flex items-center space-x-2">
-            <a-input-password v-model:value="form.code" placeholder="请输入验证码">
+      <a-spin :spinning="loading" tip="Loading...">
+        <Logo class="mb-4" />
+        <SwitchType class="mb-8" />
+        <!-- 表单 -->
+        <a-form ref="formRef" :model="form" :rules="rules">
+          <a-form-item name="phone">
+            <a-input v-model:value="form.phone" placeholder="请输入手机号">
               <template #prefix>
-                <LockOutlined class="text-gray-400" />
+                <PhoneOutlined class="text-gray-400" />
               </template>
-            </a-input-password>
-            <a-button
-              class="w-28 bg-blue-500"
-              type="primary"
-              :disabled="time > 0"
-              @click="getAuthCode"
-              >{{ time > 0 ? `${time}s` : '获取验证码' }}</a-button
+            </a-input>
+          </a-form-item>
+          <a-form-item name="code">
+            <div class="w-full flex items-center space-x-2">
+              <a-input-password v-model:value="form.code" placeholder="请输入验证码">
+                <template #prefix>
+                  <LockOutlined class="text-gray-400" />
+                </template>
+              </a-input-password>
+              <a-button
+                class="w-28 bg-blue-500"
+                type="primary"
+                :disabled="time > 0"
+                @click="getAuthCode"
+                >{{ time > 0 ? `${time}s` : '获取验证码' }}</a-button
+              >
+            </div>
+          </a-form-item>
+          <a-form-item name="agreement">
+            <a-checkbox v-model:checked="form.agreement">
+              <span class="text-xs"
+                >我已经阅读并接受<span class="text-blue-500 cursor-pointer" @click="showAgreement"
+                  >《用户服务条款》</span
+                ></span
+              ></a-checkbox
             >
-          </div>
-        </a-form-item>
-        <a-form-item name="agreement">
-          <a-checkbox v-model:checked="form.agreement">
-            <span class="text-xs"
-              >我已经阅读并接受<span class="text-blue-500 cursor-pointer" @click="showAgreement"
-                >《用户服务条款》</span
-              ></span
-            ></a-checkbox
-          >
-        </a-form-item>
-        <a-form-item>
-          <a-button class="w-full bg-blue-500" type="primary" @click="loginOrRegister"
-            >登 录</a-button
-          >
-        </a-form-item>
-      </a-form>
-      <!-- 扫码登录图标 -->
-      <!-- <QRCode class="absolute right-0 top-0" /> -->
+          </a-form-item>
+          <a-form-item>
+            <a-button class="w-full bg-blue-500" type="primary" @click="loginOrRegister"
+              >登 录</a-button
+            >
+          </a-form-item>
+        </a-form>
+        <!-- 扫码登录图标 -->
+        <!-- <QRCode class="absolute right-0 top-0" /> -->
+      </a-spin>
     </div>
   </div>
   <!-- 条款弹窗 -->
@@ -99,21 +101,32 @@ const loginOrRegister = () => {
     })
     .catch(() => {})
 }
+
+/**
+ * 控制登录
+ */
+const loading = ref(false)
 const loginIn = async () => {
-  // const data = {
-  //   authCode: form.code.trim(),
-  //   username: form.phone.trim(),
-  //   authType: 'auth_code'
-  // }
-  try {
-    // const response = await LoginIn(data)
-    // setStorage('token', response.access_token)
-    // setStorage('refresh_token', response.refresh_token)
-    // setStorage('expires_in', response.expires_in)
-    router.push({ path: '/layout' })
-  } catch (error: any) {
-    message.error(error.message)
-  }
+  loading.value = true
+  setTimeout(() => {
+    // const data = {
+    //   authCode: form.code.trim(),
+    //   username: form.phone.trim(),
+    //   authType: 'auth_code'
+    // }
+    try {
+      // const response = await LoginIn(data)
+      // setStorage('token', response.access_token)
+      // setStorage('refresh_token', response.refresh_token)
+      // setStorage('expires_in', response.expires_in)
+      loading.value = false
+      router.push({ path: '/layout' })
+    } catch (error: any) {
+      message.error(error.message)
+    } finally {
+      loading.value = false
+    }
+  }, 3000)
 }
 
 /**

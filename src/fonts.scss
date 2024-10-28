@@ -1,0 +1,45 @@
+// 优设标题体
+@font-face {
+  font-family: YouShe;
+  font-style: normal;
+  font-weight: 400;
+  src: url('@/assets/fonts/youshebiaotiti.ttf');
+}
+
+.font-YouShe {
+  font-family: YouShe;
+}
+
+// 江城斜体
+@font-face {
+  font-family: JiangCheng;
+  font-style: normal;
+  font-weight: 400;
+  src: url('@/assets/fonts/jiangchengxieheiti700.ttf');
+}
+
+.font-JiangCheng {
+  font-family: JiangCheng;
+}
+
+@font-face {
+  font-family: JiangChengLight;
+  font-style: normal;
+  font-weight: 400;
+  src: url('@/assets/fonts/jiangchengxieheiti400.ttf');
+}
+
+.font-JiangChengLight {
+  font-family: JiangChengLight;
+}
+
+@font-face {
+  font-family: zihun;
+  font-style: normal;
+  font-weight: 400;
+  src: url('@/assets/fonts/zihun.ttf');
+}
+
+.font-zihun {
+  font-family: zihun;
+}
