@@ -1,0 +1,8 @@
+.login {
+  @include bfc;
+}
+
+@include b(bg) {
+  background-image: url('@img/login/bg.jpg');
+  background-size: cover;
+}

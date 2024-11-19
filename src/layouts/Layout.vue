@@ -1,8 +1,8 @@
 <!--
  * @Author: KafkaDu banshee1115@163.com
  * @Date: 2024-09-12 10:42:30
- * @LastEditors: KafkaDu banshee1115@163.com
- * @LastEditTime: 2024-09-12 15:58:02
+ * @LastEditors: AkanaDu banshee1115@163.com
+ * @LastEditTime: 2024-11-19 08:36:20
  * @FilePath: \file-storage\src\layouts\layout.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -12,6 +12,7 @@
       class="flex-none h-16 bg-gradient-to-r from-blue-600 to-blue-400 flex justify-between items-center px-4"
     >
       <div class="text-2xl text-white font-bold">KafkaDu</div>
+      <User :user="userInfo" />
     </header>
     <div class="flex-1 flex bg-gray-200 space-x-4">
       <Menu class="flex-none" />
@@ -28,6 +29,12 @@
 
 <script setup lang="ts">
 import Menu from '@/components/Menu/index.vue'
+import User from '@/components/Layouts/User.tsx'
+
+const userInfo = {
+  name: 'akana du',
+  avatar: 'none'
+}
 </script>
 
 <style lang="scss" scoped></style>
