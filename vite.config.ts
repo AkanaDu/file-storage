@@ -2,7 +2,7 @@
  * @Author: KafkaDu banshee1115@163.com
  * @Date: 2024-09-11 11:04:10
  * @LastEditors: AkanaDu banshee1115@163.com
- * @LastEditTime: 2024-11-19 15:30:23
+ * @LastEditTime: 2024-11-19 16:43:00
  * @FilePath: \file-storage\vite.config.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -14,6 +14,7 @@ import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
+import cesium from 'vite-plugin-cesium'
 
 const pathResolve = (path: string): string => resolve(process.cwd(), path)
 
@@ -30,7 +31,8 @@ export default defineConfig({
           importStyle: false // css in js
         })
       ]
-    })
+    }),
+    cesium()
   ],
   css: {
     preprocessorOptions: {
@@ -47,8 +49,8 @@ export default defineConfig({
       '@api': pathResolve('src/api'),
       '@utils': pathResolve('src/utils')
     }
-  },
-  define: {
-    CESIUM_BASE_URL: JSON.stringify('/Cesium')
   }
+  // define: {
+  //   CESIUM_BASE_URL: JSON.stringify('/Cesium')
+  // }
 })
