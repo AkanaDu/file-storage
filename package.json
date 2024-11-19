@@ -15,6 +15,7 @@
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
     "ant-design-vue": "4.x",
+    "cesium": "^1.123.1",
     "moment": "^2.30.1",
     "pinia": "^2.1.7",
     "three": "^0.168.0",
